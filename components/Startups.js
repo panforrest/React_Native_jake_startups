@@ -5,6 +5,7 @@ import {
   ListView,
   TouchableOpacity
 } from 'react-native'
+import StartupInfo from './StartupInfo'
 
 class Startups extends Component {
   constructor(props, context){
@@ -32,15 +33,17 @@ class Startups extends Component {
 
   selectStartup = (startup) => {
   	console.log('selectStartup: ' + JSON.stringify(startup))
+  	this.props.navigator.push({
+  	  title: startup.name,
+  	  component: StartupInfo
+  	})
   }
 
   render(){
     return (
-      <View>
         <ListView
           dataSource={this.state.startups}
           renderRow={this.renderRow}/>
-      </View>
     )
   }
 }
