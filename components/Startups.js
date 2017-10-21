@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
-  ListView
+  ListView,
+  TouchableOpacity
 } from 'react-native'
 
 class Startups extends Component {
@@ -21,10 +22,16 @@ class Startups extends Component {
     }
   }
 
-  renderRow(startup, sID, rID){
+  renderRow = (startup, sID, rID) => {  //NOT renderRow(startup, sID, rID){
   	return (
-      <Text>{startup.name}</Text>
+  	  <TouchableOpacity onPress={this.selectStartup.bind(this, startup)}>
+  	    <Text>{startup.name}</Text>
+  	  </TouchableOpacity>	      
   	)
+  }
+
+  selectStartup = (startup) => {
+  	console.log('selectStartup: ' + JSON.stringify(startup))
   }
 
   render(){
